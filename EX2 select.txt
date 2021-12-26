@@ -1,0 +1,25 @@
+/*  TABLE DATA 질의어
+        INSERT
+        DELETE
+        UPDATE
+        SELECT(혼자 90% 차치, 통계에도 사용)
+            SELECT(값, 컬럼명, 함수, SUB QEURY)
+            FROM(테이블명, SUB QUERY)
+*/
+SELECT * FROM TAB; -- hr계정에 있는 모든 테이블을 볼 수 있는 쿼리
+SELECT * FROM employees;
+
+SELECT employee_id, first_name, salary FROM employees;
+
+--* 연산 가능
+SELECT last_name, salary, salary + 300 FROM employees;
+SELECT last_name, salary * 12 FROM employees;
+
+SELECT first_name || ' ' || salary -- ex)'안녕' || '하세요' = '안녕하세요'
+FROM employees; -- 이클립스에서는 ;지워야 작동
+
+--* ALIAS(별명)
+SELECT employee_id AS 사원번호, salary as 월급 FROM employees;
+
+--* DISTINCT : 중복행 삭제
+SELECT DISTINCT job_id FROM employees;
