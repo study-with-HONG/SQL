@@ -11,31 +11,33 @@ SQL> GRANT DBA TO c##아이디;<br>
 
 -------------------------------------------------------
 # SQL plus 환경설정(hr스키마 설치)
+### 굵고 기울임체 되어 있는 부분 작성
 사용자명 입력: system<br>
 비밀번호 입력: system
 
-<b>SQL> conn system/system</b><br>
+SQL><b><i> conn system/system</i></b><br>
 연결되었습니다.
 
-SQL> ALTER SESSION SET "_ORACLE_SCRIPT"=true;<br>
+SQL><b><i> ALTER SESSION SET "_ORACLE_SCRIPT"=true;</i></b><br>
+--> 계정 앞에 c##작성 안해도 됨.<br>
 세션이 변경되었습니다.
 
-SQL> @?/demo/schema/human_resources/hr_main.sql
+SQL><b><i> @?/demo/schema/human_resources/hr_main.sql</i></b>
 
 specify password for HR as parameter 1:<br>
-1의 값을 입력하십시오: hr
+1의 값을 입력하십시오: <b><i> hr </i></b>
 
 specify default tablespeace for HR as parameter 2:<br>
-2의 값을 입력하십시오: users
+2의 값을 입력하십시오: <b><i> users </i></b>
 
 specify temporary tablespace for HR as parameter 3:<br>
-3의 값을 입력하십시오: temp
+3의 값을 입력하십시오: <b><i> temp </i></b>
 
 specify log path as parameter 4:<br>
-4의 값을 입력하십시오: $ORACLE_HOME/demo/schema/log/
+4의 값을 입력하십시오: <b><i> $ORACLE_HOME/demo/schema/log/ </i></b>
 
 PL/SQL procedure successfully completed.<br>
 not spooling currently
 
-SQL> ALTER USER HR ACCOUNT UNLOCK IDENTIFIED BY hr;<br>
+SQL> <b><i> ALTER USER HR ACCOUNT UNLOCK IDENTIFIED BY hr;</i></b><br>
 User altered.
