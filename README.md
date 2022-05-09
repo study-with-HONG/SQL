@@ -1,5 +1,4 @@
-# 누구나 쉽게 SQL
-### ORACLE 환경설정
+# ORACLE 환경설정
 
 * 사용자 생성(12c부터는 계정 앞에 c##을 붙여야 한다.)<br>
 SQL> CREATE USER c##아이디 IDENTIFIED BY 비밀번호 DEFAULT TABLESPACE USERS;<br>
@@ -11,8 +10,8 @@ SQL> GRANT DBA TO c##아이디;<br>
 권한이 부여되었습니다.
 
 -------------------------------------------------------
-### SQL plus 환경설정(hr스키마 설치)
-##### 굵고 기울임체 되어 있는 부분 작성
+# SQL plus 환경설정(hr스키마 설치)
+### 굵고 기울임체 되어 있는 부분 작성
 사용자명 입력: system<br>
 비밀번호 입력: system
 
