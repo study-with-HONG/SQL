@@ -1,21 +1,21 @@
--- 4-1 / 4-3 Á÷¿ø µ¥ÀÌÅÍ INSERT
+-- 4-1 / 4-3 ì§ì› ë°ì´í„° INSERT
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
-VALUES(1, 'È«±æµ¿', '³²', 33, '2018-01-01');
+VALUES(1, 'í™ê¸¸ë™', 'ë‚¨', 33, '2018-01-01');
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
-VALUES(2, '±èÀ¯½Å', '³²', 44, '2018-01-01');
+VALUES(2, 'ê¹€ìœ ì‹ ', 'ë‚¨', 44, '2018-01-01');
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
-VALUES(3, '°­°¨Âù', '³²', 55, '2018-01-01');
+VALUES(3, 'ê°•ê°ì°¬', 'ë‚¨', 55, '2018-01-01');
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
-VALUES(4, '½Å»çÀÓ´ç', '¿©', 45, '2018-01-01');
+VALUES(4, 'ì‹ ì‚¬ì„ë‹¹', 'ì—¬', 45, '2018-01-01');
 
--- 4-6 DB¿¡ º¯°æ »çÇ×À» Àû¿ëÇÏ´Â Æ®·£Àè¼Ç Ã³¸®
+-- 4-6 DBì— ë³€ê²½ ì‚¬í•­ì„ ì ìš©í•˜ëŠ” íŠ¸ëœì­ì…˜ ì²˜ë¦¬
 COMMIT;
 
--- 4-7 ¾ÆÀÌµğ°¡ 2ÀÎ Á÷¿ø DELETE
+-- 4-7 ì•„ì´ë””ê°€ 2ì¸ ì§ì› DELETE
 DELETE FROM emp03
-WHERE emp_id=2; -- WHEREÀı »ı·«ÇÏ¸é Å×ÀÌºíÀÇ ¸ğµç µ¥ÀÌÅÍ »èÁ¦
+WHERE emp_id=2; -- WHEREì ˆ ìƒëµí•˜ë©´ í…Œì´ë¸”ì˜ ëª¨ë“  ë°ì´í„° ì‚­ì œ
 
--- 4-11 Å×ÀÌºí »ı¼º
+-- 4-11 í…Œì´ë¸” ìƒì„±
 CREATE TABLE subway_statistics(
     seq_id NUMBER PRIMARY KEY,
     station_name VARCHAR2(100),
@@ -25,34 +25,44 @@ CREATE TABLE subway_statistics(
     passenger_number NUMBER
 );
 
--- 4-12 ÁöÇÏÃ¶ ½ÂÇÏÂ÷ Á¤º¸ ÀÔ·Â
-INSERT INTO subway_statistics values(1,'¼­¿ï¿ª(150)','2017-04-01','½ÂÂ÷',7,654);
-INSERT INTO subway_statistics values(2,'¼­¿ï¿ª(150)','2017-04-01','ÇÏÂ÷',7,1923);
-INSERT INTO subway_statistics values(3,'¼­¿ï¿ª(150)','2017-04-02','½ÂÂ÷',7,413);
-INSERT INTO subway_statistics values(4,'¼­¿ï¿ª(150)','2017-04-02','ÇÏÂ÷',7,1119);
-INSERT INTO subway_statistics values(7,'½ÃÃ»(151)','2017-04-01','½ÂÂ÷',7,181);
-INSERT INTO subway_statistics values(8,'½ÃÃ»(151)','2017-04-01','ÇÏÂ÷',7,674);
-INSERT INTO subway_statistics values(11,'½ÃÃ»(151)','2017-04-03','½ÂÂ÷',7,288);
-INSERT INTO subway_statistics values(12,'½ÃÃ»(151)','2017-04-03','ÇÏÂ÷',7,3671);
-INSERT INTO subway_statistics values(15,'Á¾°¢(152)','2017-04-02','½ÂÂ÷',7,131);
-INSERT INTO subway_statistics values(16,'Á¾°¢(152)','2017-04-02','ÇÏÂ÷',7,447);
-INSERT INTO subway_statistics values(17,'Á¾°¢(152)','2017-04-03','½ÂÂ÷',7,320);
-INSERT INTO subway_statistics values(18,'Á¾°¢(152)','2017-04-03','ÇÏÂ÷',7,5683);
-INSERT INTO subway_statistics values(625,'ÇıÈ­(420)','2017-04-01','½ÂÂ÷',7,418);
-INSERT INTO subway_statistics values(626,'ÇıÈ­(420)','2017-04-01','ÇÏÂ÷',7,596);
-INSERT INTO subway_statistics values(627,'ÇıÈ­(420)','2017-04-02','½ÂÂ÷',7,259);
-INSERT INTO subway_statistics values(628,'ÇıÈ­(420)','2017-04-02','ÇÏÂ÷',7,296);
-INSERT INTO subway_statistics values(629,'ÇıÈ­(420)','2017-04-03','½ÂÂ÷',7,893);
-INSERT INTO subway_statistics values(630,'ÇıÈ­(420)','2017-04-03','ÇÏÂ÷',7,2679);
-INSERT INTO subway_statistics values(631,'µ¿´ë¹®(421)','2017-04-01','½ÂÂ÷',7,268);
-INSERT INTO subway_statistics values(632,'µ¿´ë¹®(421)','2017-04-01','ÇÏÂ÷',7,1220);
-INSERT INTO subway_statistics values(633,'µ¿´ë¹®(421)','2017-04-02','½ÂÂ÷',7,92);
-INSERT INTO subway_statistics values(634,'µ¿´ë¹®(421)','2017-04-02','ÇÏÂ÷',7,171);
-INSERT INTO subway_statistics values(635,'µ¿´ë¹®(421)','2017-04-03','½ÂÂ÷',7,245);
-INSERT INTO subway_statistics values(636,'µ¿´ë¹®(421)','2017-04-03','ÇÏÂ÷',7,1924);
-INSERT INTO subway_statistics values(1123,'°æº¹±Ã(317)','2017-04-01','½ÂÂ÷',8,503);
-INSERT INTO subway_statistics values(1124,'°æº¹±Ã(317)','2017-04-01','ÇÏÂ÷',8,1030);
-INSERT INTO subway_statistics values(1131,'¾È±¹(318)','2017-04-02','½ÂÂ÷',8,203);
-INSERT INTO subway_statistics values(1132,'¾È±¹(318)','2017-04-02','ÇÏÂ÷',8,816);
-INSERT INTO subway_statistics values(1193,'°í¼ÓÅÍ¹Ì³Î(329)','2017-04-03','½ÂÂ÷',8,2806);
-INSERT INTO subway_statistics values(1194,'°í¼ÓÅÍ¹Ì³Î(329)','2017-04-03','ÇÏÂ÷',8,2900);
+-- 4-12 ì§€í•˜ì²  ìŠ¹í•˜ì°¨ ì •ë³´ ì…ë ¥
+INSERT INTO subway_statistics values(1,'ì„œìš¸ì—­','2017-04-01','ìŠ¹ì°¨',7,654);
+INSERT INTO subway_statistics values(2,'ì„œìš¸ì—­','2017-04-01','í•˜ì°¨',7,1923);
+INSERT INTO subway_statistics values(3,'ì„œìš¸ì—­','2017-04-02','ìŠ¹ì°¨',7,413);
+INSERT INTO subway_statistics values(4,'ì„œìš¸ì—­','2017-04-02','í•˜ì°¨',7,1119);
+INSERT INTO subway_statistics values(5,'ì„œìš¸ì—­','2017-04-03','ìŠ¹ì°¨',7,2137);
+INSERT INTO subway_statistics values(6,'ì„œìš¸ì—­','2017-04-03','í•˜ì°¨',7,5344);
+INSERT INTO subway_statistics values(7,'ì‹œì²­','2017-04-01','ìŠ¹ì°¨',7,181);
+INSERT INTO subway_statistics values(8,'ì‹œì²­','2017-04-01','í•˜ì°¨',7,674);
+INSERT INTO subway_statistics values(9,'ì‹œì²­','2017-04-02','ìŠ¹ì°¨',7,144);
+INSERT INTO subway_statistics values(10,'ì‹œì²­','2017-04-02','í•˜ì°¨',7,396);
+INSERT INTO subway_statistics values(11,'ì‹œì²­','2017-04-03','ìŠ¹ì°¨',7,288);
+INSERT INTO subway_statistics values(12,'ì‹œì²­','2017-04-03','í•˜ì°¨',7,3671);
+INSERT INTO subway_statistics values(715,'ì„œìš¸ì—­','2017-04-01','ìŠ¹ì°¨',8,1517);
+INSERT INTO subway_statistics values(716,'ì„œìš¸ì—­','2017-04-01','í•˜ì°¨',8,2511);
+INSERT INTO subway_statistics values(717,'ì„œìš¸ì—­','2017-04-02','ìŠ¹ì°¨',8,944);
+INSERT INTO subway_statistics values(718,'ì„œìš¸ì—­','2017-04-02','í•˜ì°¨',8,1369);
+INSERT INTO subway_statistics values(719,'ì„œìš¸ì—­','2017-04-03','ìŠ¹ì°¨',8,3296);
+INSERT INTO subway_statistics values(720,'ì„œìš¸ì—­','2017-04-03','í•˜ì°¨',8,10582);
+INSERT INTO subway_statistics values(721,'ì‹œì²­','2017-04-01','ìŠ¹ì°¨',8,239);
+INSERT INTO subway_statistics values(722,'ì‹œì²­','2017-04-01','í•˜ì°¨',8,1108);
+INSERT INTO subway_statistics values(723,'ì‹œì²­','2017-04-02','ìŠ¹ì°¨',8,191);
+INSERT INTO subway_statistics values(724,'ì‹œì²­','2017-04-02','í•˜ì°¨',8,824);
+INSERT INTO subway_statistics values(725,'ì‹œì²­','2017-04-03','ìŠ¹ì°¨',8,401);
+INSERT INTO subway_statistics values(726,'ì‹œì²­','2017-04-03','í•˜ì°¨',8,8273);
+INSERT INTO subway_statistics values(1429,'ì„œìš¸ì—­','2017-04-01','ìŠ¹ì°¨',9,2104);
+INSERT INTO subway_statistics values(1430,'ì„œìš¸ì—­','2017-04-01','í•˜ì°¨',9,3377);
+INSERT INTO subway_statistics values(1431,'ì„œìš¸ì—­','2017-04-02','ìŠ¹ì°¨',9,1533);
+INSERT INTO subway_statistics values(1432,'ì„œìš¸ì—­','2017-04-02','í•˜ì°¨',9,1958);
+INSERT INTO subway_statistics values(1433,'ì„œìš¸ì—­','2017-04-03','ìŠ¹ì°¨',9,2121);
+INSERT INTO subway_statistics values(1434,'ì„œìš¸ì—­','2017-04-03','í•˜ì°¨',9,5197);
+INSERT INTO subway_statistics values(1435,'ì‹œì²­','2017-04-01','ìŠ¹ì°¨',9,367);
+INSERT INTO subway_statistics values(1436,'ì‹œì²­','2017-04-01','í•˜ì°¨',9,1387);
+INSERT INTO subway_statistics values(1437,'ì‹œì²­','2017-04-02','ìŠ¹ì°¨',9,338);
+INSERT INTO subway_statistics values(1438,'ì‹œì²­','2017-04-02','í•˜ì°¨',9,909);
+INSERT INTO subway_statistics values(1439,'ì‹œì²­','2017-04-03','ìŠ¹ì°¨',9,473);
+INSERT INTO subway_statistics values(1440,'ì‹œì²­','2017-04-03','í•˜ì°¨',9,3011);
+INSERT INTO subway_statistics values(1195,'êµëŒ€','2017-04-01','ìŠ¹ì°¨',8,214);
+INSERT INTO subway_statistics values(1196,'êµëŒ€','2017-04-01','í•˜ì°¨',8,307);
+INSERT INTO subway_statistics values(1617,'ê°•ë‚¨','2017-04-02','ìŠ¹ì°¨',9,1225);
+INSERT INTO subway_statistics values(1618,'ê°•ë‚¨','2017-04-02','í•˜ì°¨',9,3304);
