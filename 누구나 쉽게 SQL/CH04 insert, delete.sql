@@ -6,7 +6,7 @@ VALUES(2, '김유신', '남', 44, '2018-01-01');
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
 VALUES(3, '강감찬', '남', 55, '2018-01-01');
 INSERT INTO emp03(emp_id, emp_name, gender, age, hire_date)
-VALUES(4, '신사임당', '여', 45, '2018-01-01');
+VALUES(4, '신사임당', '남', 45, '2018-01-01'); -- 일부러 남자라고 함.
 
 -- 4-6 DB에 변경 사항을 적용하는 트랜잭션 처리
 COMMIT;
