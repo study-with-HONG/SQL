@@ -1,4 +1,4 @@
--- 9-1 Á¶ÀÎ ½Ç½À Å×ÀÌºí »ı¼º
+-- 9-1 ì¡°ì¸ ì‹¤ìŠµ í…Œì´ë¸” ìƒì„±
 CREATE TABLE master_employee(
     emp_id NUMBER PRIMARY KEY,
     emp_name VARCHAR2(50) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE master_department(
     dept_id NUMBER PRIMARY KEY,
     dept_name VARCHAR2(50),
     dept_memo VARCHAR2(100),
-    use VARCHAR2(2) DEFAULT 'Y' -- ±âº»°ª
+    use VARCHAR2(2) DEFAULT 'Y' -- ê¸°ë³¸ê°’
 );
 
 CREATE TABLE master_address(
@@ -23,65 +23,65 @@ CREATE TABLE master_address(
     etc  VARCHAR2(100)
 );
 
--- 9-2 Á¶ÀÎ ½Ç½À µ¥ÀÌÅÍ ÀÔ·Â
+-- 9-2 ì¡°ì¸ ì‹¤ìŠµ ë°ì´í„° ì…ë ¥
 INSERT INTO master_employee
-VALUES(1, '±èÀ¯½Å', '³²¼º', 56, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 1, 1);
+VALUES(1, 'ê¹€ìœ ì‹ ', 'ë‚¨ì„±', 56, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 1, 1);
 INSERT INTO master_employee
-VALUES(2, '½Å»çÀÓ´ç', '¿©¼º', 34, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 1, 2);
+VALUES(2, 'ì‹ ì‚¬ì„ë‹¹', 'ì—¬ì„±', 34, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 1, 2);
 INSERT INTO master_employee
-VALUES(3, 'È«±æµ¿', '³²¼º', 45, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 3, 2);
+VALUES(3, 'í™ê¸¸ë™', 'ë‚¨ì„±', 45, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 3, 2);
 INSERT INTO master_employee
-VALUES(4, '°­°¨Âù', '³²¼º', 23, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 2, 3);
+VALUES(4, 'ê°•ê°ì°¬', 'ë‚¨ì„±', 23, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 2, 3);
 INSERT INTO master_employee
-VALUES(5, '¼¼Á¾´ë¿Õ', '³²¼º', 45, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 4, 4);
+VALUES(5, 'ì„¸ì¢…ëŒ€ì™•', 'ë‚¨ì„±', 45, TO_DATE('2018-01-01', 'YYYY-MM-DD'), 4, 4);
 
 INSERT INTO master_department(dept_id, dept_name)
-VALUES(1, 'È¸°èÆÀ');
+VALUES(1, 'íšŒê³„íŒ€');
 INSERT INTO master_department(dept_id, dept_name)
-VALUES(2, '°æ¿µÆÀ');
+VALUES(2, 'ê²½ì˜íŒ€');
 INSERT INTO master_department(dept_id, dept_name)
-VALUES(3, 'Àü»êÆÀ');
+VALUES(3, 'ì „ì‚°íŒ€');
 INSERT INTO master_department(dept_id, dept_name)
-VALUES(4, '¸¶ÄÉÆÃÆÀ');
+VALUES(4, 'ë§ˆì¼€íŒ…íŒ€');
 
 INSERT INTO master_address
-VALUES(1, '¼­¿ïÆ¯º°½Ã', 'Áß±¸', '»õ¹®¾È·Î 12');
+VALUES(1, 'ì„œìš¸íŠ¹ë³„ì‹œ', 'ì¤‘êµ¬', 'ìƒˆë¬¸ì•ˆë¡œ 12');
 INSERT INTO master_address
-VALUES(2, '¼­¿ïÆ¯º°½Ã', '¼­´ë¹®±¸', '¿¬Èñ·Î 15±æ');
+VALUES(2, 'ì„œìš¸íŠ¹ë³„ì‹œ', 'ì„œëŒ€ë¬¸êµ¬', 'ì—°í¬ë¡œ 15ê¸¸');
 INSERT INTO master_address
-VALUES(3, '¼­¿ïÆ¯º°½Ã', '¿µµîÆ÷±¸', '¿©ÀÇ´ë·Î 99');
+VALUES(3, 'ì„œìš¸íŠ¹ë³„ì‹œ', 'ì˜ë“±í¬êµ¬', 'ì—¬ì˜ëŒ€ë¡œ 99');
 INSERT INTO master_address
-VALUES(4, '¼­¿ïÆ¯º°½Ã', '°­³²±¸', 'Å×Çì¶õ·Î 33');
+VALUES(4, 'ì„œìš¸íŠ¹ë³„ì‹œ', 'ê°•ë‚¨êµ¬', 'í…Œí—¤ë€ë¡œ 33');
 
--- 9-4 ³»ºÎ Á¶ÀÎ : ÄÃ·³ °ªÀÌ °°Àº °Ç¸¸ Á¶È¸
+-- 9-4 ë‚´ë¶€ ì¡°ì¸ : ì»¬ëŸ¼ ê°’ì´ ê°™ì€ ê±´ë§Œ ì¡°íšŒ
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e, master_department d
 WHERE e.dept_id = d.dept_id;
 
--- 9-5 ANSI ³»ºÎ Á¶ÀÎ
+-- 9-5 ANSI ë‚´ë¶€ ì¡°ì¸
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e INNER JOIN master_department d
 ON e.dept_id = d.dept_id;
 
--- 9-6 ³»ºÎ Á¶ÀÎ¿¡¼­ ³²¼º¸¸ Á¶È¸
+-- 9-6 ë‚´ë¶€ ì¡°ì¸ì—ì„œ ë‚¨ì„±ë§Œ ì¡°íšŒ
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e, master_department d
-WHERE e.dept_id = d.dept_id AND e.gender='³²¼º';
+WHERE e.dept_id = d.dept_id AND e.gender='ë‚¨ì„±';
 
--- ANSI ¹®¹ı
+-- ANSI ë¬¸ë²•
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e INNER JOIN master_department d
 ON e.dept_id = d.dept_id
-WHERE e.gender='³²¼º';
+WHERE e.gender='ë‚¨ì„±';
 
--- 9-7 Å×ÀÌºí 3°³ ³»ºÎ Á¶ÀÎ
+-- 9-7 í…Œì´ë¸” 3ê°œ ë‚´ë¶€ ì¡°ì¸
 SELECT e.emp_id, e.emp_name, e.gender, e.age,
        d.dept_name, d.use,
        a.si, a.gu, a.etc
 FROM master_employee e, master_department d, master_address a
 WHERE e.dept_id=d.dept_id AND e.adrs_id=a.adrs_id;
 
--- ANSI ¹®¹ı
+-- ANSI ë¬¸ë²•
 SELECT e.emp_id, e.emp_name, e.gender, e.age,
        d.dept_name, d.use,
        a.si, a.gu, a.etc
@@ -89,45 +89,45 @@ FROM master_employee e
 INNER JOIN master_department d ON e.dept_id=d.dept_id
 INNER JOIN master_address a ON e.adrs_id=a.adrs_id;
 
--- 9-8 µ¥ÀÌÅÍ Ãß°¡
+-- 9-8 ë°ì´í„° ì¶”ê°€
 INSERT INTO master_employee
-VALUES(6, '¿Õ°Ç', '³²¼º', 35, TO_DATE('2018-01-01', 'YYYY-MM-DD'), NULL, 4);
+VALUES(6, 'ì™•ê±´', 'ë‚¨ì„±', 35, TO_DATE('2018-01-01', 'YYYY-MM-DD'), NULL, 4);
 
--- 9-9 È¸¿ø ±âÁØ ¿ÜºÎ Á¶ÀÎ : ÄÃ·³ °ªÀÌ ¾ø´Â µ¥ÀÌÅÍµµ Á¶È¸
+-- 9-9 íšŒì› ê¸°ì¤€ ì™¸ë¶€ ì¡°ì¸ : ì»¬ëŸ¼ ê°’ì´ ì—†ëŠ” ë°ì´í„°ë„ ì¡°íšŒ
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e, master_department d
-WHERE e.dept_id = d.dept_id(+) -- µ¥ÀÌÅÍ°¡ ¾ø´Â ÂÊ¿¡ (+)ºÙÀÓ.
+WHERE e.dept_id = d.dept_id(+) -- ë°ì´í„°ê°€ ì—†ëŠ” ìª½ì— (+)ë¶™ì„.
 ORDER BY e.emp_id;
 
--- 9-10 È¸¿ø ±âÁØ ANSI ¿ÜºÎ Á¶ÀÎ
+-- 9-10 íšŒì› ê¸°ì¤€ ANSI ì™¸ë¶€ ì¡°ì¸
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_id, d.dept_name, d.use
 FROM master_employee e LEFT JOIN master_department d
 ON e.dept_id = d.dept_id(+)
 ORDER BY e.emp_id;
 
--- 9-11 µ¥ÀÌÅÍ Ãß°¡
+-- 9-11 ë°ì´í„° ì¶”ê°€
 INSERT INTO master_department(dept_id, dept_name)
-VALUES(5, 'ITÆÀ');
+VALUES(5, 'ITíŒ€');
 
--- 9-12 ºÎ¼­ ±âÁØ ¿ÜºÎ Á¶ÀÎ
+-- 9-12 ë¶€ì„œ ê¸°ì¤€ ì™¸ë¶€ ì¡°ì¸
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e, master_department d
 WHERE e.dept_id(+) = d.dept_id
 ORDER BY e.emp_id;
 
--- ANSI ¹®¹ı ºÎ¼­ ±âÁØ
+-- ANSI ë¬¸ë²• ë¶€ì„œ ê¸°ì¤€
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e RIGHT JOIN master_department d
 ON e.dept_id = d.dept_id
 ORDER BY e.emp_id;
 
--- 9-13 FULL OUTER JOIN : join¿¡ Âü¿©ÇÏ´Â µ¥ÀÌÅÍ ¸ğµÎ Á¶È¸, ANSI¸¸ °¡´É
+-- 9-13 FULL OUTER JOIN : joinì— ì°¸ì—¬í•˜ëŠ” ë°ì´í„° ëª¨ë‘ ì¡°íšŒ, ANSIë§Œ ê°€ëŠ¥
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e FULL JOIN master_department d
 ON e.dept_id = d.dept_id
 ORDER BY e.emp_id;
 
--- 9-14 Ä«Æ¼¼Ç °ö : Á¶ÀÎ Á¶°Ç »ı·« -> ¸ğµç Á¶ÇÕÀÇ µ¥ÀÌÅÍ Á¶È¸
+-- 9-14 ì¹´í‹°ì…˜ ê³± : ì¡°ì¸ ì¡°ê±´ ìƒëµ -> ëª¨ë“  ì¡°í•©ì˜ ë°ì´í„° ì¡°íšŒ
 SELECT e.emp_id, e.emp_name, e.gender, e.age, d.dept_name, d.use
 FROM master_employee e, master_department d
 ORDER BY e.emp_id;
