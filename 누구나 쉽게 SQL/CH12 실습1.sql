@@ -1,5 +1,5 @@
--- ·Î¶Ç ºĞ¼® ½Ç½À
--- 12-1 ·Î¶Ç ¹øÈ£ Å×ÀÌºí »ı¼º
+-- ë¡œë˜ ë¶„ì„ ì‹¤ìŠµ
+-- 12-1 ë¡œë˜ ë²ˆí˜¸ í…Œì´ë¸” ìƒì„±
 CREATE TABLE lotto_number(
     seq_no NUMBER PRIMARY KEY,
     draw_date DATE,
@@ -12,7 +12,7 @@ CREATE TABLE lotto_number(
     bonus NUMBER
 );
 
--- 12-2 ·Î¶Ç °á°ú Å×ÀÌºí »ı¼º
+-- 12-2 ë¡œë˜ ê²°ê³¼ í…Œì´ë¸” ìƒì„±
 CREATE TABLE lotto_detail(
     seq_no NUMBER NOT NULL,
     rank_no NUMBER NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE lotto_detail(
 ALTER TABLE lotto_detail
 ADD CONSTRAINT result_pk PRIMARY KEY(seq_no, rank_no);
 
--- ·Î¶Ç ¹øÈ£´Â 1~10È¸Â÷, ·Î¶Ç °á°ú´Â 1~5È¸Â÷ µ¥ÀÌÅÍ ÀÔ·Â
+-- ë¡œë˜ ë²ˆí˜¸ëŠ” 1~10íšŒì°¨, ë¡œë˜ ê²°ê³¼ëŠ” 1~5íšŒì°¨ ë°ì´í„° ì…ë ¥
 insert into lotto_number values(1, TO_DATE('2002-12-07','YYYY-MM-DD'),10,23,29,33,37,40,16);
 insert into lotto_number values(2, TO_DATE('2002-12-14','YYYY-MM-DD'),9,13,21,25,32,42,2);
 insert into lotto_number values(3, TO_DATE('2002-12-21','YYYY-MM-DD'),11,16,19,21,27,31,30);
@@ -60,23 +60,23 @@ insert into lotto_detail values(3,1,1,2000000000);
 insert into lotto_detail values(2,1,1,2002006800);
 insert into lotto_detail values(1,1,0,0);
 
--- 12-4 Áßº¹ ¹øÈ£ Á¸Àç Á¶È¸
+-- 12-4 ì¤‘ë³µ ë²ˆí˜¸ ì¡´ì¬ ì¡°íšŒ
 SELECT num1, num2, num3, num4, num5, num6, COUNT(*) FROM lotto_number
 GROUP BY num1, num2, num3, num4, num5, num6
 HAVING COUNT(*) > 1;
 
--- 12-5 num1±âÁØ °¡Àå ¸¹ÀÌ »ÌÈù ¹øÈ£ Á¶È¸
+-- 12-5 num1ê¸°ì¤€ ê°€ì¥ ë§ì´ ë½‘íŒ ë²ˆí˜¸ ì¡°íšŒ
 SELECT num1, COUNT(*) FROM lotto_number
 GROUP BY num1
 ORDER BY 2 DESC;
 
--- 12-6 °¡Àå ¸¹ÀÌ »ÌÈù ¹øÈ£ Á¶È¸
---  ¼­ºêÄõ¸®¸¸ ½ÇÇàÇØº¸¸é ÄÃ·³º°·Î Ä«¿îÆÃÇÑ °É ¸ğµÎ Ãâ·ÂÇÑ°Å¶ó ·Î¶Ç¹øÈ£°¡ °ãÄ§
---  -> °á°ú¸¦ ¸ŞÀÎ¿¡¼­ ´õÇØÁà¾ß Á¤È®ÇÑ °á°ú°¡ ³ª¿È
+-- 12-6 ê°€ì¥ ë§ì´ ë½‘íŒ ë²ˆí˜¸ ì¡°íšŒ
+--  ì„œë¸Œì¿¼ë¦¬ë§Œ ì‹¤í–‰í•´ë³´ë©´ ì»¬ëŸ¼ë³„ë¡œ ì¹´ìš´íŒ…í•œ ê±¸ ëª¨ë‘ ì¶œë ¥í•œê±°ë¼ ë¡œë˜ë²ˆí˜¸ê°€ ê²¹ì¹¨
+--  -> ê²°ê³¼ë¥¼ ë©”ì¸ì—ì„œ ë”í•´ì¤˜ì•¼ ì •í™•í•œ ê²°ê³¼ê°€ ë‚˜ì˜´
 SELECT lotto_num, SUM(cnt) AS cnt
 FROM(SELECT num1 lotto_num, COUNT(*) cnt FROM lotto_number
      GROUP BY num1
-         UNION ALL -- °á°ú ¸ğµÎ Ãâ·Â(ÇÕÁıÇÕ)
+         UNION ALL -- ê²°ê³¼ ëª¨ë‘ ì¶œë ¥(í•©ì§‘í•©)
      SELECT num2 lotto_num, COUNT(*) cnt FROM lotto_number
      GROUP BY num2
          UNION ALL
@@ -94,9 +94,23 @@ FROM(SELECT num1 lotto_num, COUNT(*) cnt FROM lotto_number
 GROUP BY lotto_num
 ORDER BY 2 DESC;
 
--- 12-7 °¡Àå ¸¹Àº ´çÃ·±İÀÌ ³ª¿Â È¸Â÷¿Í ¹øÈ£, ±İ¾× Á¶È¸
-SELECT n.seq_no AS "È¸Â÷", d.money AS "´çÃ·±İ", d.win_person_no AS "´çÃ·ÀÎ¿ø",
+-- 12-7 ê°€ì¥ ë§ì€ ë‹¹ì²¨ê¸ˆì´ ë‚˜ì˜¨ íšŒì°¨ì™€ ë²ˆí˜¸, ê¸ˆì•¡ ì¡°íšŒ
+SELECT n.seq_no AS "íšŒì°¨", d.money AS "ë‹¹ì²¨ê¸ˆ", d.win_person_no AS "ë‹¹ì²¨ì¸ì›",
        n.num1, n.num2, n.num3, n.num4, n.num5, n.num6, n.bonus
 FROM lotto_number n, lotto_detail d
 WHERE n.seq_no=d.seq_no AND d.rank_no=1
 ORDER BY d.money DESC;
+
+-- ì—°ìŠµë¬¸ì œ. ë‹¹ì²¨ê¸ˆì´ ì ì€ ìˆœì„œë¡œ ë‹¹ì²¨ ì •ë³´ ì¡°íšŒ
+SELECT d.seq_no íšŒì°¨, n.draw_date, d.money ê¸ˆì•¡, d.win_person_no ë‹¹ì²¨ì,
+       n.num1, n.num2, n.num3, n.num4, n.num5, n.num6, n.bonus
+FROM lotto_detail d, lotto_number n
+WHERE win_person_no>0 AND rank_no=1
+      AND d.seq_no=n.seq_no
+ORDER BY money;
+
+-- ì—°ìŠµë¬¸ì œ. ë¡œë˜ì—ì„œ ë²ˆí˜¸ê°€ ì—°ì†í•´ì„œ ë‚˜ì˜¨ íšŒì°¨ì™€ ë²ˆí˜¸ ì¡°íšŒ
+SELECT * FROM lotto_number
+WHERE num2=num1+1 OR num3=num2+1 OR num4=num3+1
+      OR num5=num4+1 OR num6=num5+1
+ORDER BY seq_no;
