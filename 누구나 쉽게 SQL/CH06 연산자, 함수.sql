@@ -1,77 +1,78 @@
--- ³¯Â¥¿¡ +, - ¿¬»êÀÚ »ç¿ë
+-- ë‚ ì§œì— +, - ì—°ì‚°ìž ì‚¬ìš©
 SELECT seq_id, boarding_date+10 FROM subway_statistics;
 SELECT seq_id, boarding_date-10 FROM subway_statistics;
 
--- 6-1 ¹®ÀÚ¿­ °áÇÕ ¿¬»êÀÚ / ||
-SELECT '¾È³ç'||'ÇÏ¼¼¿ä' FROM dual; -- ÀÓ½ÃÅ×ÀÌºí
+-- 6-1 ë¬¸ìžì—´ ê²°í•© ì—°ì‚°ìž / ||
+SELECT 'ì•ˆë…•'||'í•˜ì„¸ìš”' FROM dual; -- ìž„ì‹œí…Œì´ë¸”
 
--- 6-2 ¼Ò¼öÁ¡ ¹Ý¿Ã¸² / ROUND
+-- 6-2 ì†Œìˆ˜ì  ë°˜ì˜¬ë¦¼ / ROUND
 SELECT ROUND(123.456, 1) A, ROUND(123.456, 2) B,
        ROUND(123.456, -1) C, ROUND(123.456, -2) D, ROUND(523.456, -3) E
 FROM dual; -- 123.5 / 123.46 / 120 / 100 / 1000
 
--- 6-3 ¹®ÀÚ¿­ ÀÚ¸£±â / SUBSTR
+-- 6-3 ë¬¸ìžì—´ ìžë¥´ê¸° / SUBSTR
 SELECT SUBSTR('ABCDEF', 1, 3) A, SUBSTR('ABCDEF', 0, 3) B,
        SUBSTR('ABCDEF', 1) C, SUBSTR('ABCDEF', -2) D,
        SUBSTR('ABCDEF', -2, 1) E, SUBSTR('ABCDEF', 2, -1) F
 FROM dual; -- ABC / ABC / ABCDEF / EF / E / NULL
 
--- 6-4 ¹®ÀÚ¿­¿¡¼­ ¹®ÀÚÃ£±â / INSTR
+-- 6-4 ë¬¸ìžì—´ì—ì„œ ë¬¸ìžì°¾ê¸° / INSTR
 SELECT INSTR( 'ABABAB', 'A' ) A ,INSTR( 'ABABAB', 'A', 2 ) B,
        INSTR( 'ABABAB', 'A', 2, 1 ) C, INSTR( 'ABABAB', 'A', 2, 2 ) D
 FROM dual; -- 1 / 3 / 3 / 5
 
--- 6-5 ³¯Â¥ º¯È¯ / TO_CHAR
+-- 6-5 ë‚ ì§œ ë³€í™˜ / TO_CHAR
 SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MM:SS')
 FROM dual;
 
--- 6-6 ¸í½ÃÀû Çüº¯È¯ / TO_DATE
+-- 6-6 ëª…ì‹œì  í˜•ë³€í™˜ / TO_DATE
 INSERT INTO subway_statistics
-VALUES (100, 'È«´ë', TO_DATE('2020-10-10', 'YYYY-MM-DD'), '½ÂÂ÷', 7, 1500);
+VALUES (100, 'í™ëŒ€', TO_DATE('2020-10-10', 'YYYY-MM-DD'), 'ìŠ¹ì°¨', 7, 1500);
 
--- 6-7 NULL °ü·Ã ÇÔ¼ö
+-- 6-7 NULL ê´€ë ¨ í•¨ìˆ˜
 SELECT NVL( NULL, 'N/A' ) A, NVL2( 1, 2, 3 ) B,
        COALESCE( NULL, NULL, 5) C, NULLIF( 'NULL', 'null' ) D
 FROM dual;
+-- MYSQLì—ì„œëŠ” NVLë§ê³  IFNULL ì‚¬ìš©
 
--- Å« °ª, ÀÛÀº °ª Ã£±â / GREATEST, LEAST
+-- í° ê°’, ìž‘ì€ ê°’ ì°¾ê¸° / GREATEST, LEAST
 SELECT GREATEST('a', 1, 2, 3) FROM dual; -- a
-SELECT GREATEST(1, 'a', 'b') FROM dual; -- ¹®ÀÚ¸¦ ¼ýÀÚ·Î ¹Ù²Ü ¼ö ¾ø¾î ¿À·ù ¹ß»ý
+SELECT GREATEST(1, 'a', 'b') FROM dual; -- ë¬¸ìžë¥¼ ìˆ«ìžë¡œ ë°”ê¿€ ìˆ˜ ì—†ì–´ ì˜¤ë¥˜ ë°œìƒ
 
 SELECT LEAST('a', 1, 2, 3) FROM dual; -- 1
-SELECT LEAST(1, 'a', 'b') FROM dual; -- ¹®ÀÚ¸¦ ¼ýÀÚ·Î ¹Ù²Ü ¼ö ¾ø¾î ¿À·ù ¹ß»ý
+SELECT LEAST(1, 'a', 'b') FROM dual; -- ë¬¸ìžë¥¼ ìˆ«ìžë¡œ ë°”ê¿€ ìˆ˜ ì—†ì–´ ì˜¤ë¥˜ ë°œìƒ
 
--- Ã¹¹øÂ° ¸Å°³º¯¼ö¿Í °ª ºñ±³ / DECODE
+-- ì²«ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜ì™€ ê°’ ë¹„êµ / DECODE
 SELECT DECODE(1, 1, 'a', 2, 'b') FROM dual; -- a
 SELECT DECODE(5, 1, 'a', 2, 'b') FROM dual; -- null
 
--- 6-8 °Ë»öÇü CASE Ç¥Çö½Ä
+-- 6-8 ê²€ìƒ‰í˜• CASE í‘œí˜„ì‹
 SELECT seq_id, passenger_number,
-    CASE WHEN passenger_number BETWEEN 0  AND 999 THEN '¾ÆÁÖÀûÀ½'
-         WHEN passenger_number BETWEEN 1000 AND 1999 THEN 'ÀûÀ½'
-         WHEN passenger_number BETWEEN 2000 AND 2999 THEN 'º¸Åë'
-         WHEN passenger_number BETWEEN 3000 AND 3999 THEN '¸¹À½'
-         ELSE '¾ÆÁÖ ¸¹À½'
-    END ÀÌ¿ëÁ¤µµ
+    CASE WHEN passenger_number BETWEEN 0  AND 999 THEN 'ì•„ì£¼ì ìŒ'
+         WHEN passenger_number BETWEEN 1000 AND 1999 THEN 'ì ìŒ'
+         WHEN passenger_number BETWEEN 2000 AND 2999 THEN 'ë³´í†µ'
+         WHEN passenger_number BETWEEN 3000 AND 3999 THEN 'ë§ŽìŒ'
+         ELSE 'ì•„ì£¼ ë§ŽìŒ'
+    END ì´ìš©ì •ë„
 FROM subway_statistics
-WHERE station_name = '¼­¿ï¿ª';
+WHERE station_name = 'ì„œìš¸ì—­';
 
 SELECT last_name, job_id, salary,
-    CASE WHEN salary BETWEEN 0  AND 4999 THEN 'ÀûÀ½'
-         WHEN salary BETWEEN 5000 AND 9999 THEN 'º¸Åë'
-         WHEN salary BETWEEN 10000 AND 14999 THEN '¸¹À½'
-         ELSE '¾ÆÁÖ ¸¹À½'
-    END ¿ù±Þ
+    CASE WHEN salary BETWEEN 0  AND 4999 THEN 'ì ìŒ'
+         WHEN salary BETWEEN 5000 AND 9999 THEN 'ë³´í†µ'
+         WHEN salary BETWEEN 10000 AND 14999 THEN 'ë§ŽìŒ'
+         ELSE 'ì•„ì£¼ ë§ŽìŒ'
+    END ì›”ê¸‰
 FROM employees
 WHERE employee_id BETWEEN 100 AND 110;
 
--- ´Ü¼øÇü CASE Ç¥Çö½Ä
+-- ë‹¨ìˆœí˜• CASE í‘œí˜„ì‹
 SELECT employee_id, last_name, department_id,
-    CASE department_id WHEN 50 THEN 'ÇØ¿îºÎ'
-                       WHEN 80 THEN '¿µ¾÷ºÎ'
-                       WHEN 90 THEN 'ÀÓ¿ø'
-                       WHEN 110 THEN 'È¸°èºÎ'
-         ELSE '±âÅ¸ºÎ¼­'
-    END ºÎ¼­¸í
+    CASE department_id WHEN 50 THEN 'í•´ìš´ë¶€'
+                       WHEN 80 THEN 'ì˜ì—…ë¶€'
+                       WHEN 90 THEN 'ìž„ì›'
+                       WHEN 110 THEN 'íšŒê³„ë¶€'
+         ELSE 'ê¸°íƒ€ë¶€ì„œ'
+    END ë¶€ì„œëª…
 FROM employees
 WHERE MOD(employee_id, 5)=0;
