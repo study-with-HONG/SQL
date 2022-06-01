@@ -1,102 +1,102 @@
-/*  ¸ğµÎ employees Å×ÀÌºí »ç¿ë
+/*  ëª¨ë‘ employees í…Œì´ë¸” ì‚¬ìš©
 
-    WHEREÀı Çü½Ä
+    WHEREì ˆ í˜•ì‹
     SELECT ~ FROM ~
-    WHERE ~         -> Á¶°ÇÀı if
+    WHERE ~         -> ì¡°ê±´ì ˆ if
     
-    - ºñ±³¿¬»êÀÚ(>, <, >=, <=, !=, =, <>)
+    - ë¹„êµì—°ì‚°ì(>, <, >=, <=, !=, =, <>)
     - NULL, IS NULL, IS NOT NULL
     - AND -> &&, OR -> ||, ()  */
-/*  ºñ±³¿¬»êÀÚ  */
--- ¿¬½À 1) first_nameÀÌ Julia
+/*  ë¹„êµì—°ì‚°ì  */
+-- 1) first_nameì´ Julia
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name = 'Julia';
 
--- ¿¬½À 2) ±Ş¿© 9000ÀÌ»ó
+-- 2) ê¸‰ì—¬ 9000ì´ìƒ
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary >= 9000;
 
--- ¿¬½À 3) first_nameÀÌ Shantaº¸´Ù µÚ
+-- 3) first_nameì´ Shantaë³´ë‹¤ ë’¤
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name > 'Shanta';
 
--- ¿¬½À 4) first_name Ã¹ ±ÛÀÚ°¡ Jº¸´Ù µÚ
+-- 4) first_name ì²« ê¸€ìê°€ Jë³´ë‹¤ ë’¤
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name > 'J';
 
--- ¿¬½À 5) 2007/12/31 ÀÌÈÄ¿¡ ÀÔ»ç
+-- 5) 2007/12/31 ì´í›„ì— ì…ì‚¬
 SELECT employee_id, first_name, hire_date FROM employees
 WHERE hire_date > TO_DATE('20071231', 'YYYYMMDD');
 
 /*  NULL, NOT NULL  */
--- ¿¬½À 1) ¸Å´ÏÀú(»ó»ç)X
+-- 1) ë§¤ë‹ˆì €(ìƒì‚¬)X
 SELECT employee_id, first_name, manager_id FROM employees
 WHERE manager_id IS NULL;
 
--- ¿¬½À 2) commission_pct(º¸³Ê½º) O
+-- 2) commission_pct(ë³´ë„ˆìŠ¤) O
 SELECT employee_id, first_name, commission_pct FROM employees
 WHERE commission_pct IS NOT NULL;
 
 /*  AND  */
--- ¿¬½À 1) first_nameÀÌ Shanta, last_nameÀÌ Vollman
+-- 1) first_nameì´ Shanta, last_nameì´ Vollman
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name = 'Shanta' AND last_name = 'Vollman';
 
--- ¿¬½À 2) first_nameÀÌ John, ±Ş¿© 5000 ÀÌ»ó
+-- 2) first_nameì´ John, ê¸‰ì—¬ 5000 ì´ìƒ
 SELECT employee_id, first_name, salary FROM employees
 WHERE first_name = 'John' AND salary > 5000;
 
--- ¿¬½À 3) 2006³âµµ¿¡ ÀÔ»ç
+-- 3) 2006ë…„ë„ì— ì…ì‚¬
 SELECT employee_id, first_name, hire_date FROM employees
 WHERE hire_date >= TO_DATE('20060101', 'YYYYMMDD')
     AND hire_date <= TO_DATE('20061231', 'YYYYMMDD');
 
 /*  ALL(=AND), ANY(=OR)  */
--- ¿¬½À 1) first_nameÀÌ Julia¸é¼­ John
+-- 1) first_nameì´ Juliaë©´ì„œ John
 SELECT employee_id, first_name, last_name FROM employees
-WHERE first_name = ALL('Julia', 'John'); -- µÑ ´Ù ÃæÁ·µÉ ¼ö ¾ø±â¿¡ Ãâ·Â X
+WHERE first_name = ALL('Julia', 'John'); -- ë‘˜ ë‹¤ ì¶©ì¡±ë  ìˆ˜ ì—†ê¸°ì— ì¶œë ¥ X
 
--- ¿¬½À 2) first_nameÀÌ JuliaÀÌ°Å³ª John
+-- 2) first_nameì´ Juliaì´ê±°ë‚˜ John
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name = ANY('Julia', 'John');
 
--- ¿¬½À 3) ±Ş¿©°¡ 3200, 6000, 8000
+-- 3) ê¸‰ì—¬ê°€ 3200, 6000, 8000
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary = ANY(8000, 3200, 6000);
 
-/*  IN(ANYº¸´Ù ¸¹ÀÌ »ç¿ë), NOT IN  */
--- ¿¬½À 1) ±Ş¿©°¡ 3200, 6000, 8000
+/*  IN(ANYë³´ë‹¤ ë§ì´ ì‚¬ìš©), NOT IN  */
+-- 1) ê¸‰ì—¬ê°€ 3200, 6000, 8000
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary IN(3200, 6000, 8000);
 
--- ¿¬½À 2) ±Ş¿©°¡ 3200, 6000, 8000 ÀÌ¿Ü
+-- 2) ê¸‰ì—¬ê°€ 3200, 6000, 8000 ì´ì™¸
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary NOT IN(3200, 6000, 8000);
 
--- ¿¬½À 3) first_nameÀÌ JuliaÀÌ°Å³ª John
+-- 3) first_nameì´ Juliaì´ê±°ë‚˜ John
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name IN('Julia', 'John');
 
--- ¿¬½À 4) commission_pct(º¸³Ê½º) X
+-- 4) commission_pct(ë³´ë„ˆìŠ¤) X
 SELECT employee_id, first_name, commission_pct FROM employees
 WHERE commission_pct IS NULL;
 
-/*  BETWEEN : ¹üÀ§ ¿¬»êÀÚ  */
--- ¿¬½À 1) ±Ş¿© 3200 ~ 9000
+/*  BETWEEN : ë²”ìœ„ ì—°ì‚°ì  */
+-- 1) ê¸‰ì—¬ 3200 ~ 9000
 SELECT employee_id, first_name, salary FROM employees
 --WHERE salary >= 3200 AND salary <= 9000;
-WHERE salary BETWEEN 3200 AND 9000; -- À§º¸´Ù °£Æí
+WHERE salary BETWEEN 3200 AND 9000; -- ìœ„ë³´ë‹¤ ê°„í¸
 
--- ¿¬½À 2) ±Ş¿© 3200 ¹Ì¸¸, 9000 ÃÊ°ú
+-- 2) ê¸‰ì—¬ 3200 ë¯¸ë§Œ, 9000 ì´ˆê³¼
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary NOT BETWEEN 3200 AND 9000;
 
-/*  !=, <> µÑÀÌ °°Àº ±â´É  */
--- ¿¬½À 1) ±Ş¿©°¡ 7000
+/*  !=, <> ë‘˜ì´ ê°™ì€ ê¸°ëŠ¥  */
+-- 1) ê¸‰ì—¬ê°€ 7000
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary = 7000;
 
--- ¿¬½À 2) ±Ş¿©°¡ 7000 ÀÌ¿Ü
+-- 2) ê¸‰ì—¬ê°€ 7000 ì´ì™¸
 SELECT employee_id, first_name, salary FROM employees
 WHERE salary != 7000;
 
@@ -104,30 +104,30 @@ SELECT employee_id, first_name, salary FROM employees
 WHERE salary <> 7000;
 
 /*  LIKE  */
--- ¿¬½À 1) first_nameÀÌ G_ra_d
+-- 1) first_nameì´ G_ra_d
 SELECT employee_id, first_name, last_name FROM employees
-WHERE first_name LIKE 'G_ra_d'; -- _´Â ÇÑ±ÛÀÚ¸¦ ÀÇ¹Ì
+WHERE first_name LIKE 'G_ra_d'; -- _ëŠ” í•œê¸€ìë¥¼ ì˜ë¯¸
 
--- ¿¬½À 2) K·Î ½ÃÀÛÇÏ°í y·Î ³¡³ª´Â first_name
+-- 2) Kë¡œ ì‹œì‘í•˜ê³  yë¡œ ëë‚˜ëŠ” first_name
 SELECT employee_id, first_name, last_name FROM employees
-WHERE first_name LIKE 'K%y'; -- %´Â ±ÛÀÚ¼ö ¸ğµÎ Çã¿ë
+WHERE first_name LIKE 'K%y'; -- %ëŠ” ê¸€ììˆ˜ ëª¨ë‘ í—ˆìš©
 
--- ¿¬½À 3) A·Î ½ÃÀÛÇÏ´Â first_name
+-- 3) Aë¡œ ì‹œì‘í•˜ëŠ” first_name
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name LIKE 'A%';
 
--- ¿¬½À 4) Áß°£¿¡ E°¡ µé¾î°¡´Â first_name
+-- 4) ì¤‘ê°„ì— Eê°€ ë“¤ì–´ê°€ëŠ” first_name
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name LIKE '%e%';
 
--- ¿¬½À 5) y·Î ³¡³ª´Â first_name
+-- 5) yë¡œ ëë‚˜ëŠ” first_name
 SELECT employee_id, first_name, last_name FROM employees
 WHERE first_name LIKE '%y';
 
--- ¿¬½À 6) 2005³âµµ¿¡ ÀÔ»ç
+-- 6) 2005ë…„ë„ì— ì…ì‚¬
 SELECT employee_id, first_name, hire_date FROM employees
 WHERE hire_date LIKE '2005%';
 
--- ¿¬½À 7) Æù¹øÈ£°¡ 590À¸·Î ½ÃÀÛÇÏ°í ±Ş¿© 5000 ÀÌ»ó
+-- 7) í°ë²ˆí˜¸ê°€ 590ìœ¼ë¡œ ì‹œì‘í•˜ê³  ê¸‰ì—¬ 5000 ì´ìƒ
 SELECT employee_id, first_name, phone_number, salary FROM employees
 WHERE phone_number LIKE '590%' AND salary >= 5000;
