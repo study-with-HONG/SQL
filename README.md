@@ -1,5 +1,6 @@
 # JOIN 사진
-![Join](https://user-images.githubusercontent.com/55612285/171617525-205dc5cf-3c9d-4059-b9ca-1fa26cc2b987.png)
+![Join](https://user-images.githubusercontent.com/55612285/171618530-9bce2d78-76a4-408e-836e-ff5f17d24ca9.jpg)
+
 -------------------------------------------------------
 # ORACLE 환경설정
 
