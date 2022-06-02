@@ -1,3 +1,6 @@
+# JOIN 사진
+![Join](https://user-images.githubusercontent.com/55612285/171617525-205dc5cf-3c9d-4059-b9ca-1fa26cc2b987.png)
+-------------------------------------------------------
 # ORACLE 환경설정
 
 * 사용자 생성(12c부터는 계정 앞에 c##을 붙여야 한다.)<br>
