@@ -1,31 +1,28 @@
-/*  а╒╪с ╟Ха╓©║ юж╢б ╦П╣Г евюл╨М а╤х╦  */
+/*  Л═▒Л├█ ЙЁ└Л═∙Л≈░ Л·┬К┼■ К╙╗К⌠═ М┘▄Л²╢К╦■ Л║╟М ▄  */
 SELECT * FROM TAB;
 
-/*  евюл╨М©║ юж╢б ╦П╣Г ╣╔юлем а╤х╦  */
+/*  М┘▄Л²╢К╦■Л≈░ Л·┬К┼■ К╙╗К⌠═ К█╟Л²╢М└╟ Л║╟М ▄  */
 SELECT * FROM employees;
 
-/*  евюл╨М©║ юж╢б ╦П╣Г дц╥Ё а╤х╦  */
+/*  М┘▄Л²╢К╦■Л≈░ Л·┬К┼■ К╙╗К⌠═ Л╩╛К÷╪ Л║╟М ▄  */
 DESC employees;
 
-/*  дц╥Ё ©╛╩Й  */
+/*  Л╩╛К÷╪ Л≈╟Л┌╟  */
 SELECT last_name, salary, salary+500 FROM employees;
 
 SELECT last_name, salary, salary*12 FROM employees;
 
-SELECT first_name || ' ' || salary FROM employees; -- юле╛╦Ё╫╨©║╪╜╢б ;аЖ©Ж╬ъ юш╣©
+SELECT first_name || ' ' || salary FROM employees; -- Л²╢М│╢К╕╫Л┼╓Л≈░Л└°К┼■ ;Л╖─Л⌡▄Л∙╪ Л·▒К▐≥
 
-/*  ALIAS : дц╥Ё ╨╟╦М, ╩Щ╥╚ ╟║╢и  */
-SELECT employee_id AS ╩Г©Ь╧Ьхё, salary ©Ы╠ч FROM employees;
+/*  ALIAS : Л╩╛К÷╪ КЁ└К╙┘, Л┐²К·╣ Й╟─К┼╔  */
+SELECT employee_id AS Л┌╛Л⌡░К╡┬М≤╦, salary Л⌡■Й╦┴ FROM employees;
 
-/*  DISTINCT : аъ╨╧гЮ ╩Ха╕  */
+/*  DISTINCT : Л╓▒КЁ╣М√┴ Л┌╜Л═°  */
 SELECT DISTINCT job_id FROM employees;
 
-/*  DUAL : ╟║╩Севюл╨М, юс╫цевюл╨М  */
+/*  DUAL : Й╟─Л┐│М┘▄Л²╢К╦■, Л·└Л▀°М┘▄Л²╢К╦■  */
 SELECT 1, 'A' FROM DUAL;
 
 SELECT 'A' FROM DUAL;
 
 SELECT TO_DATE('20211222', 'YYYYMMDD') FROM DUAL;
-
-/*  хчаЖеК ╨Я©Л╠Б  */
-PURGE RECYCLEBIN;
