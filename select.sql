@@ -1,6 +1,14 @@
-/*  모두 employees 테이블 사용
+/*  모두 employees 테이블 사용  */
+/*  접속 계정에 있는 모든 테이블 조회  */
+SELECT * FROM TAB;
 
-    WHERE절 형식
+/*  테이블에 있는 모든 데이터 조회  */
+SELECT * FROM employees;
+
+/*  테이블에 있는 모든 컬럼 조회  */
+DESC employees;
+
+/*  WHERE절 형식
     SELECT ~ FROM ~
     WHERE ~         -> 조건절 if
     
