@@ -42,7 +42,7 @@ WHERE job_id LIKE 'SA%';
 -- 2) 테이블에 있는 총 인원, 보너스를 받는 인원, 평균 보너스, 등록되어 있는 부서의 수 조회
 SELECT COUNT(*) "총 인원", COUNT(commission_pct) "보너스 받는 인원",
        ROUND(AVG(salary * commission_pct)) "평균 보너스",
-       COUNT(DISTINCT department_id) "총 부서 수"
+       COUNT(DISTINCT department_id) "총 부서 수" -- DISTINCT : 중복 행 삭제
 FROM employees;
 
 -- 3) 부서별 인원수 및 급여 통계
