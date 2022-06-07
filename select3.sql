@@ -1,76 +1,76 @@
 /*  JOIN
-    - µÎ °³ ÀÌ»óÀÇ Å×ÀÌºíÀ» ¿¬°áÇØ¼­ µ¥ÀÌÅÍ¸¦ °Ë»öÇÏ´Â ¹æ¹ı, ±âº»Å°¿Í ¿Ü·¡Å° »ç¿ë
+    - ë‘ ê°œ ì´ìƒì˜ í…Œì´ë¸”ì„ ì—°ê²°í•´ì„œ ë°ì´í„°ë¥¼ ê²€ìƒ‰í•˜ëŠ” ë°©ë²•, ê¸°ë³¸í‚¤ì™€ ì™¸ë˜í‚¤ ì‚¬ìš©
     
-    JOINÀÇ Á¾·ù               Áß¿äµµ
+    JOINì˜ ì¢…ë¥˜               ì¤‘ìš”ë„
     - INNER, SELF            *****
     - OUTER(LEFT, RIGHT)     ***
     - FULL OUTER             *
-    - CROSS, ANTI µî
+    - CROSS, ANTI ë“±
 */
-/*  INNER JOIN : ¾çÂÊ Å×ÀÌºí¿¡¼­ °øÅëÀ¸·Î Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ, ±³ÁıÇÕ  */
--- ansi SQL ¹®¹ı
+/*  INNER JOIN : ì–‘ìª½ í…Œì´ë¸”ì—ì„œ ê³µí†µìœ¼ë¡œ ì¡´ì¬í•˜ëŠ” ë°ì´í„°, êµì§‘í•©  */
+-- ansi SQL ë¬¸ë²•
 SELECT e.employee_id, e.first_name, e.department_id, d.department_name
 FROM employees e INNER JOIN departments d
 ON e.department_id = d.department_id;
 
--- oracle ¹®¹ı
+-- oracle ë¬¸ë²•
 SELECT e.employee_id, e.first_name, e.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id;
 
--- 1) »ç¿ø¹øÈ£°¡ 200ÀÎ »ç¿øÀÇ ºÎ¼­¸í Á¶È¸
+-- 1) ì‚¬ì›ë²ˆí˜¸ê°€ 200ì¸ ì‚¬ì›ì˜ ë¶€ì„œëª… ì¡°íšŒ
 SELECT e.employee_id, e.first_name, e.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND e.employee_id = 200;
 
--- 2) ¾÷¹«¿Í ¾÷¹« Å¸ÀÌÆ² Á¶È¸
+-- 2) ì—…ë¬´ì™€ ì—…ë¬´ íƒ€ì´í‹€ ì¡°íšŒ
 SELECT DISTINCT e.job_id, j.job_title
 FROM employees e, jobs j
 WHERE e.job_id = j.job_id
 ORDER BY e.job_id;
 
-/*  SELF JOIN : µ¿ÀÏÇÑ Å×ÀÌºí JOIN  */
--- »ó»çÀÇ ÀÌ¸§ Á¶È¸
-SELECT a.employee_id ºÎÇÏ»ç¹ø, a.first_name ºÎÇÏÀÌ¸§,
-       a.manager_id »ó»ç»ç¹ø, b.first_name »ó»çÀÌ¸§
-FROM employees a, employees b -- a´Â ºÎÇÏ Å×ÀÌºí, b´Â »ó»ç Å×ÀÌºí
+/*  SELF JOIN : ë™ì¼í•œ í…Œì´ë¸” JOIN  */
+-- ìƒì‚¬ì˜ ì´ë¦„ ì¡°íšŒ
+SELECT a.employee_id ë¶€í•˜ì‚¬ë²ˆ, a.first_name ë¶€í•˜ì´ë¦„,
+       a.manager_id ìƒì‚¬ì‚¬ë²ˆ, b.first_name ìƒì‚¬ì´ë¦„
+FROM employees a, employees b -- aëŠ” ë¶€í•˜ í…Œì´ë¸”, bëŠ” ìƒì‚¬ í…Œì´ë¸”
 WHERE a.manager_id = b.employee_id
 ORDER BY a.employee_id;
 
-/*  LEFT OUTER JOIN : INNER + ¿ŞÂÊ Å×ÀÌºí¿¡¸¸ Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ  */
--- ansi SQL ¹®¹ı
+/*  LEFT OUTER JOIN : INNER + ì™¼ìª½ í…Œì´ë¸”ì—ë§Œ ì¡´ì¬í•˜ëŠ” ë°ì´í„°  */
+-- ansi SQL ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
-FROM employees e LEFT OUTER JOIN departments d -- employees°¡ Áß½É Å×ÀÌºí
+FROM employees e LEFT OUTER JOIN departments d -- employeesê°€ ì¤‘ì‹¬ í…Œì´ë¸”
 ON e.department_id = d.department_id;
 
--- oracle ¹®¹ı
+-- oracle ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
-FROM employees e, departments d -- employees°¡ Áß½É Å×ÀÌºí
+FROM employees e, departments d -- employeesê°€ ì¤‘ì‹¬ í…Œì´ë¸”
 WHERE e.department_id = d.department_id(+);
 
-/*  LEFT OUTER - INNER : Â÷ÁıÇÕ  */
+/*  LEFT OUTER - INNER : ì°¨ì§‘í•©  */
 SELECT e.employee_id, e.first_name, e.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id(+) AND e.department_id IS NULL;
 
-/*  RIGHT OUTER JOIN : INNER + ¿À¸¥ÂÊ Å×ÀÌºí¿¡¸¸ Á¸ÀçÇÏ´Â µ¥ÀÌÅÍ  */
--- ansi SQL ¹®¹ı
+/*  RIGHT OUTER JOIN : INNER + ì˜¤ë¥¸ìª½ í…Œì´ë¸”ì—ë§Œ ì¡´ì¬í•˜ëŠ” ë°ì´í„°  */
+-- ansi SQL ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
-FROM employees e RIGHT OUTER JOIN departments d -- departments°¡ Áß½É Å×ÀÌºí
+FROM employees e RIGHT OUTER JOIN departments d -- departmentsê°€ ì¤‘ì‹¬ í…Œì´ë¸”
 ON e.department_id = d.department_id;
 
--- oracle ¹®¹ı
+-- oracle ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
-FROM employees e, departments d -- departments°¡ Áß½É Å×ÀÌºí
+FROM employees e, departments d -- departmentsê°€ ì¤‘ì‹¬ í…Œì´ë¸”
 WHERE e.department_id(+) = d.department_id;
 
-/*  FULL OUTER JOIN : ¸ğµç µ¥ÀÌÅÍ, ÇÕÁıÇÕ  */
--- ansi SQL ¹®¹ı
+/*  FULL OUTER JOIN : ëª¨ë“  ë°ì´í„°, í•©ì§‘í•©  */
+-- ansi SQL ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
 FROM employees e FULL OUTER JOIN departments d
 ON e.department_id = d.department_id;
 
--- oracle ¹®¹ı
+-- oracle ë¬¸ë²•
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id(+)
@@ -79,18 +79,18 @@ SELECT e.employee_id, e.first_name, e.department_id, d.department_id, d.departme
 FROM employees e, departments d
 WHERE e.department_id(+) = d.department_id;
     
-/*  FULL OUTER - INNER : ´ëÄª Â÷ÁıÇÕ  */
--- ansi SQL ¹®¹ı(oracleÀº º¹Àâ)
+/*  FULL OUTER - INNER : ëŒ€ì¹­ ì°¨ì§‘í•©  */
+-- ansi SQL ë¬¸ë²•(oracleì€ ë³µì¡)
 SELECT e.employee_id, e.first_name, d.department_id, d.department_name
 FROM employees e FULL OUTER JOIN departmentS d
 ON e.department_id = d.department_id
 WHERE e.department_id IS NULL OR d.department_id IS NULL;
 
-/*  CROSS JOIN : ¸ğµç µ¥ÀÌÅÍ Á¶ÇÕ Ãâ·Â, Á¶ÀÎ Á¶°Ç X  */
--- ansi SQL ¹®¹ı
+/*  CROSS JOIN : ëª¨ë“  ë°ì´í„° ì¡°í•© ì¶œë ¥, ì¡°ì¸ ì¡°ê±´ X  */
+-- ansi SQL ë¬¸ë²•
 SELECT e.employee_id, e.first_name, e.department_id, d.department_id, d.department_name
 FROM employees e CROSS JOIN departments d;
 
--- oracle ¹®¹ı
+-- oracle ë¬¸ë²•
 SELECT e.employee_id, e.first_name, e.department_id, d.department_id, d.department_name
 FROM employees e, departments d;
