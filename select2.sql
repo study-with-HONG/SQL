@@ -1,6 +1,6 @@
 /*	모두 employees 테이블 사용
 
-	ORDER BY절 형식
+    ORDER BY절 형식
     SELECT ~ FROM ~
     WHERE ~
     ORDER BY ~ asc(오름차순, 생략 가능) / desc(내림차순)
