@@ -1,59 +1,59 @@
--- 1) ÀÌ¸§, ºÎ¼­¹øÈ£, ºÎ¼­¸í Á¶È¸
+-- 1) ì´ë¦„, ë¶€ì„œë²ˆí˜¸, ë¶€ì„œëª… ì¡°íšŒ
 SELECT e.first_name, e.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id;
 
--- 2) ºÎ¼­¹øÈ£°¡ 30¹øÀÎ »ç¿øÀÇ ÀÌ¸§, ¾÷¹«, ¾÷¹« Å¸ÀÌÆ², ºÎ¼­¸í
+-- 2) ë¶€ì„œë²ˆí˜¸ê°€ 30ë²ˆì¸ ì‚¬ì›ì˜ ì´ë¦„, ì—…ë¬´, ì—…ë¬´ íƒ€ì´í‹€, ë¶€ì„œëª…
 SELECT e.employee_id, e.first_name, e.job_id, j.job_title, d.department_name
 FROM employees e, jobs j, departments d
 WHERE e.job_id = j.job_id AND e.department_id = d.department_id
     AND e.department_id = 30;
 
--- 3) º¸³Ê½º ¹Ş´Â »ç¿øÀÇ ÀÌ¸§, ¾÷¹«, ºÎ¼­¹øÈ£, ºÎ¼­¸í
+-- 3) ë³´ë„ˆìŠ¤ ë°›ëŠ” ì‚¬ì›ì˜ ì´ë¦„, ì—…ë¬´, ë¶€ì„œë²ˆí˜¸, ë¶€ì„œëª…
 SELECT e.first_name, e.job_id, e.department_id, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND e.commission_pct IS NOT NULL;
 
--- 4) Áö¿ª¹øÈ£ 2500¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øÀÇ ÀÌ¸§, ¾÷¹«, ºÎ¼­¹øÈ£, ºÎ¼­¸í, Áö¿ª¸í
+-- 4) ì§€ì—­ë²ˆí˜¸ 2500ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ì˜ ì´ë¦„, ì—…ë¬´, ë¶€ì„œë²ˆí˜¸, ë¶€ì„œëª…, ì§€ì—­ëª…
 SELECT e.employee_id, e.first_name, e.job_id,
        e.department_id, d.department_name, l.city
 FROM employees e, departments d, locations l
 WHERE e.department_id = d.department_id AND d.location_id = l.location_id
     AND l.location_id = 2500;
 
--- 5) ÀÌ¸§¿¡ A°¡ µé¾î°¡´Â »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­¸í
+-- 5) ì´ë¦„ì— Aê°€ ë“¤ì–´ê°€ëŠ” ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œëª…
 SELECT e.first_name, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND e.first_name LIKE '%a%'
 ORDER BY e.first_name;
 
--- 6) »ç¿øÀÌ¸§°ú ±× »ç¿øÀÇ °ü¸®ÀÚ ÀÌ¸§ Á¶È¸
-SELECT a.first_name »ç¿ø, b.first_name °ü¸®ÀÚ
+-- 6) ì‚¬ì›ì´ë¦„ê³¼ ê·¸ ì‚¬ì›ì˜ ê´€ë¦¬ì ì´ë¦„ ì¡°íšŒ
+SELECT a.first_name ì‚¬ì›, b.first_name ê´€ë¦¬ì
 FROM employees a, employees b
 WHERE a.manager_id = b.employee_id;
 
--- 7) ±Ş¿©°¡ 3000 ÀÌ»óÀÎ »ç¿øÀÇ ÀÌ¸§, ºÎ¼­¸í, ±Ş¿©
+-- 7) ê¸‰ì—¬ê°€ 3000 ì´ìƒì¸ ì‚¬ì›ì˜ ì´ë¦„, ë¶€ì„œëª…, ê¸‰ì—¬
 SELECT e.first_name, d.department_name, e.salary
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND e.salary >= 3000;
 
--- 8) TJ(first_name)º¸´Ù ´Ê°Ô ÀÔ»çÇÑ »ç¿øÀÇ ÀÌ¸§°ú ÀÔ»çÀÏ
+-- 8) TJ(first_name)ë³´ë‹¤ ëŠ¦ê²Œ ì…ì‚¬í•œ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ì…ì‚¬ì¼
 SELECT b.first_name , b.hire_date
 FROM employees a, employees b
 WHERE a.first_name = 'TJ' AND a.hire_date < b.hire_date
 ORDER BY b.hire_date;
 
--- 9) ±Ş¿©°¡ 3000 ~ 5000ÀÎ »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­¸í
+-- 9) ê¸‰ì—¬ê°€ 3000 ~ 5000ì¸ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œëª…
 SELECT e.first_name, d.department_name, e.salary
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND e.salary BETWEEN 3000 AND 5000;
 
--- 10) ACCOUNTING ¼Ò¼Ó »ç¿øÀÇ ÀÌ¸§°ú ÀÔ»çÀÏ
+-- 10) ACCOUNTING ì†Œì† ì‚¬ì›ì˜ ì´ë¦„ê³¼ ì…ì‚¬ì¼
 SELECT e.employee_id, e.first_name, e.hire_date, d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND UPPER(d.department_name) = 'ACCOUNTING';
 
--- 11) ±Ş¿©°¡ 3000ÀÌÇÏÀÎ »ç¿øÀÇ ÀÌ¸§, ±Ş¿©, ±Ù¹«Áö
+-- 11) ê¸‰ì—¬ê°€ 3000ì´í•˜ì¸ ì‚¬ì›ì˜ ì´ë¦„, ê¸‰ì—¬, ê·¼ë¬´ì§€
 SELECT e.first_name, e.salary, l.city
 FROM employees e, departments d, locations l
 WHERE e.department_id = d.department_id AND d.location_id = l.location_id
