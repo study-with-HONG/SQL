@@ -1,23 +1,23 @@
-/*  Å×ÀÌºí Á¤º¸°¡ ¾øÀ¸¸é employees Å×ÀÌºí »ç¿ë  */
--- 1) last_nameÀÌ KochharÀÎ »ç¿øÀÇ ±Ş¿©º¸´Ù ¸¹Àº »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ´ã´ç¾÷¹«, ±Ş¿©
+/*  í…Œì´ë¸” ì •ë³´ê°€ ì—†ìœ¼ë©´ employees í…Œì´ë¸” ì‚¬ìš©  */
+-- 1) last_nameì´ Kochharì¸ ì‚¬ì›ì˜ ê¸‰ì—¬ë³´ë‹¤ ë§ì€ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ë‹´ë‹¹ì—…ë¬´, ê¸‰ì—¬
 SELECT employee_id, first_name, job_id, salary
 FROM employees
 WHERE salary > (SELECT salary FROM employees
                 WHERE last_name = 'Kochhar');
 
--- 2) ±Ş¿©°¡ Æò±Õ ±Ş¿©º¸´Ù ÀûÀº »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ´ã´ç¾÷¹«, ±Ş¿©, ºÎ¼­¹øÈ£
+-- 2) ê¸‰ì—¬ê°€ í‰ê·  ê¸‰ì—¬ë³´ë‹¤ ì ì€ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ë‹´ë‹¹ì—…ë¬´, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸
 SELECT employee_id, first_name, job_id, salary, department_id
 FROM employees
 WHERE salary < (SELECT AVG(salary) FROM employees);
 
--- 3) 100¹ø ºÎ¼­ÀÇ ÃÖ¼Ò ±Ş¿©º¸´Ù ÃÖ¼Ò ±Ş¿©°¡ ¸¹Àº ºÎ¼­
+-- 3) 100ë²ˆ ë¶€ì„œì˜ ìµœì†Œ ê¸‰ì—¬ë³´ë‹¤ ìµœì†Œ ê¸‰ì—¬ê°€ ë§ì€ ë¶€ì„œ
 SELECT department_id, MIN(salary)
 FROM employees
 GROUP BY department_id
 HAVING MIN(salary) > (SELECT MIN(salary) FROM employees
                      WHERE department_id = 100);
 
--- 4) ¾÷¹«º° ÃÖ¼Ò ±Ş¿©¸¦ ¹Ş´Â »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ºÎ¼­¹øÈ£¸¦ ¾÷¹«º°·Î Á¤·Ä
+-- 4) ì—…ë¬´ë³„ ìµœì†Œ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ë¶€ì„œë²ˆí˜¸ë¥¼ ì—…ë¬´ë³„ë¡œ ì •ë ¬
 SELECT employee_id, first_name, job_id, department_id, salary
 FROM employees
 WHERE (job_id, salary) IN(SELECT job_id, MIN(salary)
@@ -25,41 +25,41 @@ WHERE (job_id, salary) IN(SELECT job_id, MIN(salary)
                           GROUP BY job_id)
 ORDER BY job_id;
 
--- 5) ¾÷¹«°¡ SA_MAN »ç¿øÀÇ ÀÌ¸§, ¾÷¹«, ºÎ¼­¸í, ±Ù¹«Áö¸¦ FROM, WHEREÀı µÑ ´Ù ÀÛ¼º
--- FROM Àı
+-- 5) ì—…ë¬´ê°€ SA_MAN ì‚¬ì›ì˜ ì´ë¦„, ì—…ë¬´, ë¶€ì„œëª…, ê·¼ë¬´ì§€ë¥¼ FROM, WHEREì ˆ ë‘˜ ë‹¤ ì‘ì„±
+-- FROM ì ˆ
 SELECT e.first_name, e.job_id, d.department_name, l.city
 FROM (SELECT * FROM employees WHERE job_id = 'SA_MAN') e,
      departments d, locations l
 WHERE e.department_id = d.department_id AND d.location_id = l.location_id;
 
--- WHERE Àı
+-- WHERE ì ˆ
 SELECT e.first_name, e.job_id, d.department_name, l.city
 FROM employees e, departments d, locations l
 WHERE e.department_id = d.department_id AND d.location_id = l.location_id
     AND e.employee_id IN(SELECT employee_id FROM employees
                      WHERE job_id = 'SA_MAN');
 
--- 6) °¡Àå ¸¹Àº ºÎÇÏ¸¦ °®´Â MANAGERÀÇ »ç¿ø¹øÈ£
+-- 6) ê°€ì¥ ë§ì€ ë¶€í•˜ë¥¼ ê°–ëŠ” MANAGERì˜ ì‚¬ì›ë²ˆí˜¸
 SELECT manager_id, COUNT(*)
 FROM employees
 GROUP BY manager_id
 HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM employees
                    GROUP BY manager_id);
                             
--- 7) °¡Àå ¸¹Àº »ç¿øÀÌ ¼ÓÇØ ÀÖ´Â ºÎ¼­ ¹øÈ£¿Í »ç¿ø¼ö
+-- 7) ê°€ì¥ ë§ì€ ì‚¬ì›ì´ ì†í•´ ìˆëŠ” ë¶€ì„œ ë²ˆí˜¸ì™€ ì‚¬ì›ìˆ˜
 SELECT department_id, COUNT(*)
 FROM employees
 GROUP BY department_id
 HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM employees
                    GROUP BY department_id);
 
--- 8) 123¹ø »ç¿øÀÇ Á÷¾÷°ú °°°í, 192¹ø »ç¿øÀÇ ±Ş¿©º¸´Ù ¸¹Àº »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, Á÷¾÷, ±Ş¿©
+-- 8) 123ë²ˆ ì‚¬ì›ì˜ ì§ì—…ê³¼ ê°™ê³ , 192ë²ˆ ì‚¬ì›ì˜ ê¸‰ì—¬ë³´ë‹¤ ë§ì€ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì§ì—…, ê¸‰ì—¬
 SELECT employee_id, first_name, job_id, salary
 FROM employees
 WHERE job_id = (SELECT job_id FROM employees WHERE employee_id = 123)
     AND salary > (SELECT salary FROM employees WHERE employee_id = 192);
 
--- 9) Á÷¾÷º°·Î ÃÖ¼Ò±Ş¿©¸¦ ¹Ş´Â »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ºÎ¼­¸íÀ» Á÷¾÷º°·Î ³»¸²Â÷¼ø Á¤·Ä
+-- 9) ì§ì—…ë³„ë¡œ ìµœì†Œê¸‰ì—¬ë¥¼ ë°›ëŠ” ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ë¶€ì„œëª…ì„ ì§ì—…ë³„ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 SELECT e.job_id, e.employee_id, e.first_name, d.department_name, e.salary
 FROM employees e, departments d
 WHERE e.department_id = d.department_id
@@ -67,13 +67,13 @@ WHERE e.department_id = d.department_id
                                 GROUP BY job_id)
 ORDER BY e.job_id DESC;
 
--- 10) 50¹ø ºÎ¼­´Â Á¦¿ÜÇÏ°í ±Ş¿©°¡ 50¹ø ºÎ¼­ÀÇ ÃÖ¼Ò ±Ş¿©º¸´Ù ³ôÀº »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ÀÔ»çÀÏÀÚ, ±Ş¿©, ºÎ¼­¹øÈ£
+-- 10) 50ë²ˆ ë¶€ì„œëŠ” ì œì™¸í•˜ê³  ê¸‰ì—¬ê°€ 50ë²ˆ ë¶€ì„œì˜ ìµœì†Œ ê¸‰ì—¬ë³´ë‹¤ ë†’ì€ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ì…ì‚¬ì¼ì, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸
 SELECT employee_id, first_name, job_id, hire_date, salary, department_id
 FROM employees
 WHERE salary > (SELECT MIN(salary) FROM employees WHERE department_id = 50)
     AND department_id != 50;
 
--- 11) 50¹ø ºÎ¼­´Â Á¦¿ÜÇÏ°í ±Ş¿©°¡ 50¹ø ºÎ¼­ÀÇ ÃÖ°í ±Ş¿©º¸´Ù ³ôÀº »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ÀÔ»çÀÏÀÚ, ±Ş¿©, ºÎ¼­¹øÈ£
+-- 11) 50ë²ˆ ë¶€ì„œëŠ” ì œì™¸í•˜ê³  ê¸‰ì—¬ê°€ 50ë²ˆ ë¶€ì„œì˜ ìµœê³  ê¸‰ì—¬ë³´ë‹¤ ë†’ì€ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ì…ì‚¬ì¼ì, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸
 SELECT employee_id, first_name, job_id, hire_date, salary, department_id
 FROM employees
 WHERE salary > (SELECT MAX(salary) FROM employees WHERE department_id = 50)
